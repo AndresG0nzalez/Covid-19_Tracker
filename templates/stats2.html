@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
     <style>
+        table, th, td {
+                width: 50px;
+                text-align: left;
+                border: 1px solid black;
+        }
+
         h1 {text-align: center;}
         p {text-align: center;}
         div {text-align: center;}
@@ -13,13 +19,18 @@
 		<link rel="stylesheet" type="text/css" href = "{{ url_for('static',filename='styles.css') }}">
 </head>
 <body>
-    <div class="containter">
-        <h1>{{ CityTable.name }} </h1>
-        <p>pop: {{ CityTable.population }} </p>
-        <p>number of cases: {{ CityTable.cases }} </p>
-        <a href="{{ url_for('home') }} ">Back to search</a>
-    </div>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <h1> {{ data['county_name'] }} County Statistic </h1>
+    <table style ="margin-left: auto; margin-right:auto;">
+        {% for key, value in data.items() %}
+            <tr>
+                <th>{{ key }}:</th>
+                <td>{{ value }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p> <a href="{{ url_for('home') }} ">Back to search </p>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
