@@ -16,18 +16,13 @@ def stats():
         search_text = (request.form["city/county/zip"]).lower()
         #send to db and get back tuple, then return to stats page
 
-        results = ('Leon', 15253, 241, 6869, 2307, 1640, 1372, 536, 1166, 634, 287, 192, 24, 243, 141, 6809, 8410, 6187, 4161, 1383, 9314)
-        description = [('county_name', 253, None, None, None, None, 0, 20483), ('cases', 3, None, None, None, None, 1, 32768), ('age_0_4', 3, None, None, None, None, 1, 32768),
-                       ('age_15_24', 3, None, None, None, None, 1, 32768), ('age_25_34', 3, None, None, None, None, 1, 32768), ('age_35_44', 3, None, None, None, None, 1, 32768),
-                       ('age_45_54', 3, None, None, None, None, 1, 32768), ('age_5_14', 3, None, None, None, None, 1, 32768), ('age_55_64', 3, None, None, None, None, 1, 32768),
-                       ('age_65_74', 3, None, None, None, None, 1, 32768), ('age_75_84', 3, None, None, None, None, 1, 32768), ('age_85_plus', 3, None, None, None, None, 1, 32768),
-                       ('age_median', 3, None, None, None, None, 1, 32768), ('new_cases', 3, None, None, None, None, 1, 32768), ('deaths', 3, None, None, None, None, 1, 32768),
-                       ('men', 3, None, None, None, None, 1, 32768), ('women', 3, None, None, None, None, 1, 32768), ('race_white', 3, None, None, None, None, 1, 32768),
-                       ('race_black', 3, None, None, None, None, 1, 32768), ('race_hispanic_yes', 3, None, None, None, None, 1, 32768), ('race_hispanic_no', 3, None, None, None, None, 1, 32768)]
-        fields = [i[0] for i in description]
+        results = ('Leon', 15253, 0, 241, 6869, 2307, 1640, 1372, 536, 1166, 634, 287, 192, 24, 243, 141, 6809, 8410, 6187, 4161, 1383, 9314)
+
+        fields = ['County Name', 'Total Cases', 'Population', 'Cases (Age 0-4)', 'Cases (Age 15-24)','Cases (Age 25-34)',
+                  'Cases (Age 35-44)', 'Cases (Age 45-54)', 'Cases (Age 5-14)', 'Cases (Age 55-64)', 'Cases (Age 65-74)',
+                  'Cases (Age 75-84)','Cases (Age 85+)', 'Age Median', 'New Cases', 'Deaths',
+                  'Men', 'Women', 'White', 'Black', 'Hispanic', 'Non Hispanic']
         data = dict(zip(fields, results))
-        
-        print(data)
         return render_template('stats2.html', data=data)
 
 @app.route("/map")
