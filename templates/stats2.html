@@ -2,7 +2,8 @@
 <html>
     <style>
         table, th, td {
-                width: 50px;
+                width: 100px;
+                white-space:nowrap;
                 text-align: left;
                 border: 1px solid black;
         }
@@ -19,11 +20,11 @@
 		<link rel="stylesheet" type="text/css" href = "{{ url_for('static',filename='styles.css') }}">
 </head>
 <body>
-    <h1> {{ data['county_name'] }} County Statistic </h1>
-    <table style ="margin-left: auto; margin-right:auto;">
+    <h1> COVID-19 Statistic </h1>
+    <table style ="margin-left: auto; margin-right:auto; ">
         {% for key, value in data.items() %}
             <tr>
-                <th>{{ key }}:</th>
+                <th>{{ key }}</th>
                 <td>{{ value }}</td>
             </tr>
         {% endfor %}
