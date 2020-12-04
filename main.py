@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, current_app
 import mysql.connector
+import os
+import json
 
 app = Flask(__name__)
 
@@ -75,6 +77,13 @@ def stats():
 @app.route("/map")
 def map():
     return render_template("map.html")
+
+@app.route("/county.geojson", methods=['GET'])
+def map_render():
+    root = os.path.realpath(os.path.dirname(__file__)) 
+    json_url = os.path.join(root, "static", "county.geojson")
+    data = json.load(open(json_url))
+    return data
 
 if __name__ == "__main__":
     app.run(debug=True)
